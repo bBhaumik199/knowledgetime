@@ -18,8 +18,8 @@ return new class extends Migration
             $table->string("banner_image");
             $table->dateTime("creation_date");
             $table->dateTime("modification_time");
-            $table->dateTime("author_id");
-
+            $table->integer("author_id");
+            $table->foreign("author_id")->references('id')->on('users');
         });
     }
 
