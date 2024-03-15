@@ -12,7 +12,8 @@ class PostController extends Controller
      */
     public function index()
     {
-        return view("user.insertpostform");
+        $post = DB::table('posts')->select()->get();
+        return view("user.post1");
     }
 
     /**
