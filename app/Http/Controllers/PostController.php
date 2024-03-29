@@ -2,18 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\DB;
 use App\Models\Post;
 use Illuminate\Http\Request;
+
 
 class PostController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Post $post)
     {
-        $post = DB::table('posts')->select()->get();
-        return view("user.post1");
+        return view("user.post1",["post"=>$post]);
     }
 
     /**

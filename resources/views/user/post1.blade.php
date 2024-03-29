@@ -7,7 +7,7 @@
                         <div class="blog-title-area">
                             <span class="color-green"><a href="garden-category.html" title="">Gardening</a></span>
 
-                            <h3>How to get rid of that annoying lock screen in Windows 10?</h3>
+                            <h3{{ $post }}</h3>
 
                             <div class="blog-meta big-meta">
                                 <small><a href="" title="">28 Feb, 2024</a></small>
