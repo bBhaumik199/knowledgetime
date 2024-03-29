@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\DB;
 use App\Models\Post;
+use App\Models\Comments;
 use Illuminate\Http\Request;
 
 
@@ -14,7 +15,34 @@ class PostController extends Controller
      */
     public function index(Post $post)
     {
-        return view("user.post1",["post"=>$post]);
+        $allDetails = Post::with('author')->first();
+        $time = $allDetails->creation_date;
+        // return $time;
+        $ts = strtotime($time);
+        $t = "";
+        $t .= date('d',$ts);
+        $t .= " ";
+        $t .= date('M',$ts);
+        $t .= ", ";
+        $t .= date('Y',$ts);
+        return view("user.post1",["post"=>$allDetails,"date"=>$t]);
+    }
+
+    public function addComment(Request $request){
+        // Fetching form details
+        $data = $request->validate([
+            "name"=>"required",
+            "email"=>"required | email",
+            "comments"=>"required"
+        ]);
+        // setting up the post ID
+        $post_id =  $request->segment(3);
+        $data['post_id'] = $post_id;
+        
+        // Saving the data in db
+        Comments::create($data);
+        // redirect back to the post
+        return redirect()->back()->with("success","Your comment has been added successfully");
     }
 
     /**

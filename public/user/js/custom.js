@@ -66,3 +66,15 @@ function openCategory(evt, catName) {
     document.getElementById(catName).style.display = "block";
     evt.currentTarget.className += " active";
 } 
+
+const storeScrollPosition = () =>{
+    sessionStorage.setItem("scrollPosition",window.scrollY);
+}
+
+const fetchScrollPosition = () =>{
+    let scrollPosition = sessionStorage.getItem("scrollPosition");
+    if(scrollPosition !== null){
+        window.scrollTo(0,scrollPosition);
+        sessionStorage.removeItem("scrollPosition");
+    }
+}

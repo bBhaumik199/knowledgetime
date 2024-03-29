@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get("/post/{post}",[PostController::class,"index"]);    
-
+Route::post("/post/add-comment/{id}",[PostController::class, "addComment"]);
 // Route::get('/', function () {
 //     return view('home');
 // });

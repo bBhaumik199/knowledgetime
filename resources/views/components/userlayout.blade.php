@@ -38,7 +38,7 @@
 
     <!-- Version Garden CSS for this template -->
     <link href="{{ asset('/user/css/garden.css') }}" rel="stylesheet">
-
+    <x-head.tinymce-config/>
 
 </head>
 <body>
@@ -280,6 +280,9 @@
     <script src="{{ asset('/user/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('/user/js/custom.js') }}"></script>
     <script src="{{ asset('/user/js/postjs.js') }}"></script>
-
+    <script>
+        window.addEventListener('beforeunload',storeScrollPosition);
+        window.addEventListener('load',fetchScrollPosition);
+    </script>
 </body>
 </html>

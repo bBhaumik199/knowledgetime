@@ -3,38 +3,24 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
+                    
                     <div class="page-wrapper">
                         <div class="blog-title-area">
                             <span class="color-green"><a href="garden-category.html" title="">Gardening</a></span>
-
-                            <h3{{ $post }}</h3>
-
+                            <h3>{{ $post->title }}</h3>
                             <div class="blog-meta big-meta">
-                                <small><a href="" title="">28 Feb, 2024</a></small>
-                                <small><a href="blog-author.html" title="">by Em</a></small>
+                                <small><a href="" title="">{{ $date}}</a></small>
+                                <small><a href="blog-author.html" title="">by {{$post->author->name}}</a></small>
                                 {{-- <small><a href="#" title=""><i class="fa fa-eye"></i> 2344</a></small> --}}
                             </div><!-- end meta -->
-
                             @include('user.sharing')
-
                             <div class="single-post-media">
-                                <img src="{{ asset('images/A1I1.jpg') }}" alt="" class="img-fluid">
+                                <img src="{{ asset('images/'.$post->banner_image) }}" alt="" class="img-fluid">
                             </div><!-- end media -->
-
                             <div class="blog-content">
                                 <div class="pp">
-                                    <p>When we come back to our desk and see that computer is locked, we need to usually
-                                        click on the screen somewhere or press “Enter” to get to the screen that shows
-                                        the password field and unlock it. Sometimes the screen gets stuck and you’ll
-                                        have to wait for a while before it shows the password field which is pretty
-                                        annoying when you are in a hurry. </p>
-
-                                    {{-- <img src="{{asset('images/A1I1.jpg')}}" alt="" class="img-fluid img-fullwidth"> --}}
-
-
-                                    <h3><strong>Now Let's work towards getting rid of that lock screen in windows 10
-                                            system. Windows vs Humans. Let's go. </strong></h3>
-
+                                    <p>{{$post->first_para}}</p>
+                                    <h3><strong>{{$post->bold_text}}</strong></h3>
                                     <p>There are two ways to get rid of it.</p>
                                     <ol class="check">
                                         <li>
@@ -50,10 +36,6 @@
                                         it. So, let’s get rid of this lock screen so that you can enter your password
                                         directly.</p>
 
-                                </div><!-- end pp -->
-
-
-                                <div class="pp">
 
                                     <ol>
                                         <li>Press Windows key and search for “Edit Group Policy”.</li>
@@ -91,7 +73,7 @@
                                         </li>
                                     </ol>
 
-                                    <p> <a href="{{ asset('downloadablefiles/LockScreenBehaviour.bat') }}"
+                                    <p> <a href="{{ asset('downloadablefiles/'.$post->downloadable_file_name) }}"
                                             target="_blank" rel="noopener noreferrer"><img
                                                 src="{{ asset('images/downloadimage.png') }}" class="float-left"
                                                 width="340" alt=""></a> Too much for your brain? Allow us to
@@ -109,14 +91,14 @@
                                 </div><!-- end pp -->
                             </div><!-- end content -->
 
-                            <div class="blog-title-area">
+                            {{-- <div class="blog-title-area">
                                 <div class="tag-cloud-single">
                                     <span>Tags</span>
                                     <small><a href="#" title="">lifestyle</a></small>
                                     <small><a href="#" title="">colorful</a></small>
                                     <small><a href="#" title="">trending</a></small>
                                     <small><a href="#" title="">another tag</a></small>
-                                </div><!-- end meta -->
+                                </div><!-- end meta --> --}}
 
                                 @include('user.sharing')
 
@@ -141,7 +123,7 @@
                                         </div><!-- end col -->
 
                                         <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
-                                            <h4><a href="#">Jessica</a></h4>
+                                            <h4><a href="#">{{ $post->author->name }}</a></h4>
                                             <p>Quisque sed tristique felis. Lorem <a href="#">visit my website</a>
                                                 amet, consectetur adipiscing elit. Phasellus quis mi auctor, tincidunt
                                                 nisl eget, finibus odio. Duis tempus elit quis risus congue feugiat.
@@ -218,8 +200,10 @@
                                 </div><!-- end custom-box -->
 
                                 <hr class="invis1">
+                                <x-forms.tinymce-editor/>
 
-                                <div class="custombox clearfix">
+                                 {{-- <div class="custombox clearfix"></div> --}}
+                                 {{--
                                     <h4 class="small-title">3 Comments</h4>
                                     <div class="row">
                                         <div class="col-lg-12">
@@ -287,17 +271,28 @@
                                     <h4 class="small-title">Leave a Reply</h4>
                                     <div class="row">
                                         <div class="col-lg-12">
-                                            <form class="form-wrapper">
-                                                <input type="text" class="form-control" placeholder="Your name">
-                                                <input type="text" class="form-control"
+                                            <form class="form-wrapper" method="post" action="/post/add-comment/{{ $post->id }}">
+                                                @csrf
+                                                <input type="text" class="form-control" name="name" placeholder="Your name">
+                                                @error('name')
+                                                    <span class="text text-danger">{{ $message }}</span>
+                                                @enderror
+                                                <input type="text" class="form-control" name="email"
                                                     placeholder="Email address">
-                                                <input type="text" class="form-control" placeholder="Website">
-                                                <textarea class="form-control" placeholder="Your comment"></textarea>
+                                                    @error('email')
+                                                    <span class="text text-danger">{{ $message }}</span>
+                                                @enderror
+                                                <input type="text" class="form-control" name="website" placeholder="Website">
+                                                <textarea class="form-control" placeholder="Your comment" name="comments"></textarea>
+                                                @error('comment')
+                                                    <span class="text text-danger">{{ $message }}</span>
+                                                @enderror
                                                 <button type="submit" class="btn btn-primary">Submit Comment</button>
                                             </form>
                                         </div>
                                     </div>
-                                </div>
+                                </div> --}}
+                        </div>
                             </div><!-- end page-wrapper -->
                         </div><!-- end col -->
 
