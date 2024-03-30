@@ -3,6 +3,8 @@
   tinymce.init({
     selector: 'textarea#myeditorinstance', // Replace this CSS selector to match the placeholder element for TinyMCE
     plugins: 'code table lists image',
+    skin: 'oxide-dark',
+    content_css: 'dark',
     menu:'insert',
     toolbar: 'image',
     image_title: true,

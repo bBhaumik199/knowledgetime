@@ -200,9 +200,10 @@
                                 </div><!-- end custom-box -->
 
                                 <hr class="invis1">
-                                <x-forms.tinymce-editor/>
-
-                                 {{-- <div class="custombox clearfix"></div> --}}
+                                
+                                <div class="custombox clearfix">
+                                     <x-forms.tinymce-editor/>
+                                 </div>
                                  {{--
                                     <h4 class="small-title">3 Comments</h4>
                                     <div class="row">
@@ -292,9 +293,7 @@
                                         </div>
                                     </div>
                                 </div> --}}
-                        </div>
-                            </div><!-- end page-wrapper -->
+                                
+                            {{-- </div><!-- end page-wrapper --> --}}
                         </div><!-- end col -->
-
-
 </x-userlayout>

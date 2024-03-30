@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +16,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get("/admin/dashboard",[AdminController::class,"dashboard"]);
+Route::get("/admin/addnewpost",[AdminController::class, "addPost"]);
 Route::get("/post/{post}",[PostController::class,"index"]);    
 Route::post("/post/add-comment/{id}",[PostController::class, "addComment"]);
 // Route::get('/', function () {
