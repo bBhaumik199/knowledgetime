@@ -17,9 +17,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get("/admin/dashboard",[AdminController::class,"dashboard"]);
-Route::get("/admin/addnewpost",[AdminController::class, "addPost"]);
+Route::get("/admin/addnewpost",[AdminController::class, "showAddPostPage"]);
+Route::post("/admin/addnewpost",[AdminController::class, "storePost"]);
 Route::get("/post/{post}",[PostController::class,"index"]);    
 Route::post("/post/add-comment/{id}",[PostController::class, "addComment"]);
+Route::post("/admin/upload",[AdminController::class, "upload"]);
 // Route::get('/', function () {
 //     return view('home');
 // });
