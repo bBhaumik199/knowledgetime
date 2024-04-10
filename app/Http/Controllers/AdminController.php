@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\Post;
 use DB;
+use Illuminate\Http\Request;
 // use App\Http\Controllers\DB;
 
 class AdminController extends Controller
@@ -23,8 +24,15 @@ class AdminController extends Controller
             $request->session()->put("imageCounter",1);
         }
         $image = $request->file('file');
-        $postId =  DB::table('posts')->latest('id')->first()->id;
+        $postId =  DB::table('posts')->latest('id')->first();
+        if($postId != null){
+            $postId = $postId->id;
+        }
+        else{
+            $postId = 0;
+        }
         $postId+=1;
+        // dd($postId);
         $name = "a" . $postId . "i" .$imageCounter ;
         $imageName = $name . '.' . $image->getClientOriginalExtension();
         $request->file("file")->move(public_path("uploads"),$imageName);
@@ -33,14 +41,24 @@ class AdminController extends Controller
 
     public function storePost(Request $request){
         $data = $request->validate([
-            "image" => "required",
+            "title"=> "required",
+            "banner_image" => "required",
             "content" => "required"
         ]);
-        // $request->file("image")
+        $postId =  DB::table('posts')->latest('id')->first();
+        if($postId != null){
+            $postId = $postId->id;
+        }
+        else{
+            $postId = 0;
+        }
+        $postId+=1;
+        $imageName = "banner_image". $postId . ".jpg";
+        $data['banner_image'] = $imageName;
+        $data['author_id']=1;
+        Post::create($data);
+        $request->file("banner_image")->move(public_path("uploads"),$imageName);
         return $data;
-        $n = strpos($data["content"],"--")+4;
-        $next = strpos($data["content"],"--",$n)-2;
-        return substr($data["content"],$n ,($next - $n));
     }
 
     public function showAddPostPage(){
