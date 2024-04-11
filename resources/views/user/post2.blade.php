@@ -8,7 +8,7 @@
                         <div class="blog-title-area">
                             <span class="color-green"><a href="garden-category.html" title="">Gardening</a></span>
 
-                            <h3>How to sign out inactive users automatically in Windows OS?</h3>
+                            <h3>{{ $post->title }}</h3>
 
                             <div class="blog-meta big-meta">
                                 <small><a href="" title="">29 Feb, 2024</a></small>
@@ -19,58 +19,15 @@
                             @include('user.sharing')
 
                         <div class="single-post-media">
-                            <img src="{{ asset('images/a2i1.png')}}" alt="" class="img-fluid img-fullwidth">
+                            <img src="{{ asset('uploads/'.$post->banner_image)}}" alt="" class="img-fluid img-fullwidth">
                         </div><!-- end media -->
 
                         <div class="blog-content">  
                             <div class="pp">
-                                <p>
-                                    Look at the image. What does the image here remind you? Let me give you a perspective. This huge beast is your computer. All the other pesky little humans are users that are trying to slow down your PC. The beast is huge and powerful but with enough of those pesky little humans can take down the beast. You have given access to multiple users to connect to your system. These users work for a while and then forget to sign out. 
-                                </p>
-
-                            {{-- <img src="{{asset('images/A1I1.jpg')}}" alt="" class="img-fluid img-fullwidth"> --}}
-
-
-                                <h3><strong>Instead of having to sign out every user manually and then shut down the main system. So, today we will make sure those users get disconnected automatically after some time</strong></h3>
-
-
-                                <p>Now follow along with me and let's solve this little problem with our tech wizardry</p>
-
-                            </div><!-- end pp -->
-
-
-                            <div class="pp">
-
-                                <ol >
-                                    <li>Press Windows key and  search for “Edit Group Policy”.</li>
-                                    <li>Press Enter (Obviously Haha).</li>
-                                    <li>It should look like this </li>
-                            <img src="{{asset('images/a1i2.png')}}" alt="" class="img-fluid img-fullwidth">
-
-                                    <li>Now Follow this path carefully.  <br/>
-                                        <code>
-                                            Computer Configuration > Administrative Templates > Control Panel > Personalization
-                                            </code> 
-                                        </li>
-                                    <li>Remember to click on the arrow that can be seen on the left side of these menus and not the name of the menu itself. You will not be able to see an arrow ad the left side of “Personalization” so click on the menu name at this point.</li>
-                                    <li>
-                                        This is how your screen would look if you are on the right track.
-                                    </li>
-                            <img src="{{asset('images/a1i3.png')}}" alt="" class="img-fluid img-fullwidth">
-<li>Now look at the right side of the screen and locate “Do not display the lock screen” (In case you are a bit blind or functioning on just 3 hours of sleep, the menu is 4th from the top) and double click on it</li>
-<img src="{{asset('images/a1i4.png')}}" alt="" class="img-fluid img-fullwidth">
-
-
-<li>Change it to Enabled and you are good to go.
-Verify it by locking your system (Win key + L) and you should see the password screen directly.
-No lock screen wallpaper anymore. Our enchantment is completed here.
-</li>
-</ol>
-
+                                {{-- {{ $post->content }} --}}
+                                {!! html_entity_decode($post->content) !!}
                                 <p> <a href="{{asset('downloadablefiles/LockScreenBehaviour.bat')}}" target="_blank" rel="noopener noreferrer"><img src="{{ asset('images/downloadimage.png')}}" class="float-left" width="340" alt=""></a> Too much for your brain? Allow us to use magic to save your brain and your efforts. See the image ont the left side? That image is the portal to the magical land of solution. Clicking on that image will download a file which has the magic words to make your problem go away in just one step. </p>
-
                                 <h3><strong>Download the file by clicking on the image. Right click that file and select "Run as Admin". Your problem is solved</strong></h3>
-
 
                                 <p>That is enough for today. Hopefully your problem is solved. Read carefully and do it again if it's not solved yet or approach us via commenting below.
                             </div><!-- end pp -->

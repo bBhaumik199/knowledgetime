@@ -66,7 +66,7 @@
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>Blog Posts</a>
                         <div class="dropdown-menu bg-transparent border-0">
                             <a href="/admin/addnewpost" class="dropdown-item">Add New Post</a>
-                            <a href="typography.html" class="dropdown-item">Manage Posts</a>
+                            <a href="/admin/showposts" class="dropdown-item">Manage Posts</a>
                             <a href="element.html" class="dropdown-item">Other Elements</a>
                         </div>
                     </div>

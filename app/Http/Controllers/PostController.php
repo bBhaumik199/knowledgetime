@@ -13,8 +13,9 @@ class PostController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(Post $post)
+    public function index2(Post $post)
     {
+        
         $allDetails = Post::with('author')->first();
         $time = $allDetails->creation_date;
         // return $time;
@@ -26,6 +27,21 @@ class PostController extends Controller
         $t .= ", ";
         $t .= date('Y',$ts);
         return view("user.post1",["post"=>$allDetails,"date"=>$t]);
+    }
+    public function index(Post $post)
+    {
+        // $allDetails = Post::with('author')->first();
+        // return $post;
+        $time = $post->created_at;
+        // return $time;
+        $ts = strtotime($time);
+        $t = "";
+        $t .= date('d',$ts);
+        $t .= " ";
+        $t .= date('M',$ts);
+        $t .= ", ";
+        $t .= date('Y',$ts);
+        return view("user.post2",["post"=>$post,"date"=>$t]);
     }
 
     public function addComment(Request $request){

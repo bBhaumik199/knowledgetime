@@ -64,4 +64,9 @@ class AdminController extends Controller
     public function showAddPostPage(){
         return view("admin.addpost");
     }
+
+    public function showPosts(){
+        $allPosts = Post::all();
+        return view("admin.showposts",["posts"=>$allPosts]);
+    }
 }

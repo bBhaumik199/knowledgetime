@@ -15,17 +15,18 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Route::get("/posttemp/1",[PostController::class,"index2"]);
+Route::get("/post/{post}",[PostController::class,"index"]);    
+Route::post("/post/add-comment/{id}",[PostController::class, "addComment"]);
+
 
 Route::get("/admin/dashboard",[AdminController::class,"dashboard"]);
 Route::get("/admin/addnewpost",[AdminController::class, "showAddPostPage"]);
 Route::post("/admin/addnewpost",[AdminController::class, "storePost"]);
-Route::get("/post/{post}",[PostController::class,"index"]);    
-Route::post("/post/add-comment/{id}",[PostController::class, "addComment"]);
-Route::post("/admin/upload",[AdminController::class, "upload"]);
-// Route::get('/', function () {
-//     return view('home');
-// });
 
-// Route::get("/get-rid-of-windows-lockscreen",function(){
-//     return view("post1");
-// });
+Route::get("/admin/showposts",[AdminController::class, "showPosts"]);
+
+Route::get("/admin/showeditpost",[AdminController::class, "showEditPost"]);
+Route::post("/admin/editpost",[AdminController::class, "editPost"]);
+Route::post("/admin/upload",[AdminController::class, "upload"]);
+
