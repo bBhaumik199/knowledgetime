@@ -26,7 +26,7 @@ Route::post("/admin/addnewpost",[AdminController::class, "storePost"]);
 
 Route::get("/admin/showposts",[AdminController::class, "showPosts"]);
 
-Route::get("/admin/showeditpost",[AdminController::class, "showEditPost"]);
+Route::get("/admin/showeditpost/{post}",[AdminController::class, "showEditPost"]);
 Route::post("/admin/editpost",[AdminController::class, "editPost"]);
 Route::post("/admin/upload",[AdminController::class, "upload"]);
 

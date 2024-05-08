@@ -20,7 +20,7 @@
                     <td>{{ $post->created_at }}</td>
                     <td>{{ $post->updated_at }}</td>
                     <td>{{ $post->content }}</td>
-                    <td><a href="" class="btn btn-info"> <i class="bi bi-pencil"></i> </a> </td>
+                    <td><a href="/admin/showeditpost/{{ $post->id }}" class="btn btn-info"> <i class="bi bi-pencil"></i> </a> </td>
                     <td><a href="" class="btn btn-primary"> <i class="bi bi-trash-fill "></i> </a> </td>
                     <td></td>
                 </tr>
