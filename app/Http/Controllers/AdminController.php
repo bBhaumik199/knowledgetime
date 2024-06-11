@@ -73,4 +73,20 @@ class AdminController extends Controller
     public function showEditPost(Post $post){
         return view("admin.editpost",["post"=>$post]);
     }
+
+    public function editPost(Request $request){
+        
+        $post= Post::where("id","1")->first();
+        // return $post;
+        $data = $request->validate([
+            "title"=> "required",
+            "content" => "required"
+        ]);
+        $post->title = $data["title"];
+        // $post->banner_image = $data["banner_image"];
+        $post->content = $data["content"];
+        $post->save();
+        // return $post;
+        return redirect("/admin/showposts")->with("success","Post updated successfully");
+    }
 }
