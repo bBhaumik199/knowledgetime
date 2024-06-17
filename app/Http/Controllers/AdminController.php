@@ -3,14 +3,42 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use App\Models\User;
 use DB;
+use Auth;
 use Illuminate\Http\Request;
 // use App\Http\Controllers\DB;
 
 class AdminController extends Controller
 {
+
+    public function login(Request $request){
+        // $data["name"] = "Emrys";
+        // $data["email"] = "bhattbhaumik199@gmail.com";
+        // $data["password"] = "123";
+        // User::create($data);
+        $data = $request->validate([
+            "email" => "required | email",
+            "password" => "required"
+        ]);
+        if(Auth::attempt($data)){
+            $request->session()->regenerate();
+            return redirect("/admin/dashboard");
+        }
+        else{
+            return redirect()->back()->with("error","Username or Password is wrong");
+        }
+    }
+
     public function dashboard(){
-        return view("admin.dashboard");
+        if(auth()->check()){
+            $user = auth()->user();
+            return view("admin.dashboard",["user"=>$user]);
+        }
+        else{
+            return redirect("/admin/login");
+        }
+        // return $user;
     }
 
     public function upload(Request $request){
@@ -89,4 +117,13 @@ class AdminController extends Controller
         // return $post;
         return redirect("/admin/showposts")->with("success","Post updated successfully");
     }
+
+    public function showLoginForm(){
+        return view("admin.login");
+    }
+
+    public function logout(){
+        auth()->logout();
+        return redirect("/admin/login")->with("success","You have been logged out successfully");
+    }    
 }

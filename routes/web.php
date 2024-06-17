@@ -20,14 +20,18 @@ Route::get("/post/{post}",[PostController::class,"index"]);
 Route::post("/post/add-comment/{id}",[PostController::class, "addComment"]);
 
 
-Route::get("/admin/dashboard",[AdminController::class,"dashboard"]);
-Route::get("/admin/addnewpost",[AdminController::class, "showAddPostPage"]);
-Route::post("/admin/addnewpost",[AdminController::class, "storePost"]);
+Route::group(["middleware"=>["auth"]],function(){
+    Route::get("/admin/dashboard",[AdminController::class,"dashboard"]);
+    Route::get("/admin/addnewpost",[AdminController::class, "showAddPostPage"]);
+    Route::post("/admin/addnewpost",[AdminController::class, "storePost"]);    
+    Route::get("/admin/showposts",[AdminController::class, "showPosts"]);
+    Route::get("/admin/showeditpost/{post}",[AdminController::class, "showEditPost"]);
+    Route::get("/admin/deletepost/{post}",[AdminController::class, "deletePost"]);
+    Route::post("/admin/editpost",[AdminController::class, "editPost"]);
+    Route::post("/admin/upload",[AdminController::class, "upload"]);
+    Route::post("/admin/logout",[AdminController::class, "logout"]);
+} );
 
-Route::get("/admin/showposts",[AdminController::class, "showPosts"]);
-
-Route::get("/admin/showeditpost/{post}",[AdminController::class, "showEditPost"]);
-Route::get("/admin/deletepost/{post}",[AdminController::class, "deletePost"]);
-Route::post("/admin/editpost",[AdminController::class, "editPost"]);
-Route::post("/admin/upload",[AdminController::class, "upload"]);
+Route::get("/admin/login",[AdminController::class, "showLoginForm"])->name("login");
+Route::post("/admin/login",[AdminController::class, "login"]);
 

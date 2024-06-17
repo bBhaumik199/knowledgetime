@@ -56,8 +56,8 @@
                         <div class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1"></div>
                     </div>
                     <div class="ms-3">
-                        <h6 class="mb-0">Emrys</h6>
-                        <span>Admin</span>
+                        <h6 class="mb-0">{{ auth()->user()->name }}</h6>
+                        <span style="text-transform: capitalize">{{ auth()->user()->role }}</span>
                     </div>
                 </div>
                 <div class="navbar-nav w-100">
@@ -169,12 +169,15 @@
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
                             <img class="rounded-circle me-lg-2" src="{{ asset("admin/img/user.jpg") }}" alt="" style="width: 40px; height: 40px;">
-                            <span class="d-none d-lg-inline-flex">John Doe</span>
+                            <span class="d-none d-lg-inline-flex">{{ auth()->user()->name }}</span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-end bg-secondary border-0 rounded-0 rounded-bottom m-0">
                             <a href="#" class="dropdown-item">My Profile</a>
                             <a href="#" class="dropdown-item">Settings</a>
-                            <a href="#" class="dropdown-item">Log Out</a>
+                            <form action="" method="POST">
+                                @csrf
+                                <a href="/admin/logout" class="dropdown-item">Log Out</a>
+                            </form>
                         </div>
                     </div>
                 </div>
